@@ -1,6 +1,12 @@
 
 let myLibrary = [];
 
+let addBookButton = document.querySelector('.add-book');
+let modal = document.querySelector('.book-modal');
+addBookButton.addEventListener('click', (e) => {
+    modal.showModal();
+});
+
 function Book(author, title, pages, read) {
     if (!new.target) {
         throw Error("You must use the 'new' operator to call the constructor");

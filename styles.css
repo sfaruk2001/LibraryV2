@@ -11,6 +11,16 @@ body {
     grid-template-rows: 1fr 6fr;
 }
 
+
+.book-modal {
+    margin: auto; /* Centers the modal vertically and horizontally */
+    border: 1px solid red;
+    border-radius: 8px;
+    padding: 20px;
+    height: 500px;
+    width: 500px;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
