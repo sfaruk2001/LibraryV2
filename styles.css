@@ -21,6 +21,41 @@ body {
     width: 500px;
 }
 
+.modal-form-title {
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.library-form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.library-form > * {
+    margin-bottom: 10px;
+}
+
+.read-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.complete-wrapper, .incomplete-wrapper {
+    display: flex;
+    gap: 2px;
+}
+
+.submit-button {
+    margin-top: 20px;
+    height: 30px;
+    width: 150px;
+    border-radius: 10px;
+    border: 1px solid black;
+    
+}
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -55,6 +90,11 @@ body {
 
 .book-author, .book-pages, .readStatus {
     font-size: 1.5rem;
+}
+
+.delete-book {
+    width: 120px;
+    height: 30px;
 }
 
 

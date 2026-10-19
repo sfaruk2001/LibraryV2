@@ -3,8 +3,33 @@ let myLibrary = [];
 
 let addBookButton = document.querySelector('.add-book');
 let modal = document.querySelector('.book-modal');
+let submitButton = document.querySelector('.submit-button');
+let deleteButton = document.querySelector('.delete-book');
+
+//You need to work on delete functionality 
+
 addBookButton.addEventListener('click', (e) => {
     modal.showModal();
+});
+
+submitButton.addEventListener('click', (e) => {
+    //e.preventDefault();
+
+    let form = document.querySelector('form');
+    let container = document.querySelector('.container');
+    let title = document.querySelector('#title').value;
+    let author = document.querySelector('#author').value;
+    let pages = document.querySelector('#pages').value;
+    let readStatus = document.querySelector('input[name="book-status"]:checked').value;
+    
+    form.reset();
+    addBookToLibrary(author, title, pages, readStatus);
+    container.innerHTML = "";
+    displayBooks();
+
+    
+    modal.close();
+
 });
 
 function Book(author, title, pages, read) {
@@ -59,10 +84,16 @@ function displayBooks() {
         readStatus.classList.add("readStatus");
         readStatus.textContent = myLibrary[i].read;
 
+        //delete button
+        let deleteButton = document.createElement("button");
+        deleteButton.classList.add("delete-book");
+        deleteButton.textContent = "Delete";
+
         card.appendChild(title);
         card.appendChild(author);
         card.appendChild(pages);
         card.appendChild(readStatus)
+        card.appendChild(deleteButton);
 
         container.appendChild(card);
     }
