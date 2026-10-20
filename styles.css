@@ -1,3 +1,7 @@
+:root {
+    --main-color: blueviolet;
+    --secondary-color: white;
+}
 
 * {
     padding: 0;
@@ -14,7 +18,7 @@ body {
 
 .book-modal {
     margin: auto; /* Centers the modal vertically and horizontally */
-    border: 1px solid red;
+    border: 1px solid black;
     border-radius: 8px;
     padding: 20px;
     height: 500px;
@@ -57,11 +61,27 @@ body {
 }
 
 .header {
+    background-color: var(--main-color);
+    color: var(--secondary-color);
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    border: 1px solid blue;
+    gap: 7px;
     padding: 20px;
+}
+
+.header > h1 {
+    font-size: 2.5rem;
+}
+
+.add-book {
+    background-color: var(--secondary-color);
+    color: var(--main-color);
+    border: 1px solid var(--secondary-color);
+    border-radius: 10px;
+    width: 80px;
+    height: 30px;
+    font-size: .8rem;
 }
 
 .container {
@@ -69,7 +89,6 @@ body {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-auto-rows: 250px;
     gap: 20px;
-    border: 1px solid purple;
     padding: 20px;
 }
 
@@ -78,8 +97,8 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    border: 2px solid red;
-    padding: 20px;
+    border: 2px solid var(--main-color);
+    padding: 10px;
     
 }
 
@@ -88,11 +107,19 @@ body {
     font-weight: bold;
 }
 
-.book-author, .book-pages, .readStatus {
+.book-author, .book-pages {
     font-size: 1.5rem;
 }
 
-.delete-book {
+button[readstatus = 'Complete'] {
+    background-color: green;
+}
+
+button[readstatus = 'Incomplete'] {
+    background-color: red;
+}
+
+.delete-book, button[readstatus] {
     width: 120px;
     height: 30px;
 }

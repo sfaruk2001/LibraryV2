@@ -5,7 +5,7 @@ let addBookButton = document.querySelector('.add-book');
 let modal = document.querySelector('.book-modal');
 let submitButton = document.querySelector('.submit-button');
 
-//You need to work on delete functionality 
+//Couldn't figure out validation 
 
 
 addBookButton.addEventListener('click', (e) => {
@@ -13,20 +13,29 @@ addBookButton.addEventListener('click', (e) => {
 });
 
 submitButton.addEventListener('click', (e) => {
-    //e.preventDefault();
+    let form = document.querySelector('.library-form');
 
-    let form = document.querySelector('form');
+    // 1. Check if the HTML 'required' attributes are satisfied
+    if (!form.reportValidity()) {
+        // If the form is invalid, stop the function here. 
+        // The browser will automatically show its validation bubbles.
+        return; 
+    }
+
+    // 2. Prevent the default dialog submission now that we know it's valid
+    e.preventDefault();
+
     let container = document.querySelector('.container');
     let title = document.querySelector('#title').value;
     let author = document.querySelector('#author').value;
     let pages = document.querySelector('#pages').value;
     let readStatus = document.querySelector('input[name="book-status"]:checked').value;
     
-    form.reset();
+    
     addBookToLibrary(author, title, pages, readStatus);
     container.innerHTML = "";
     displayBooks();
-
+    form.reset();
     
     modal.close();
 
@@ -46,6 +55,14 @@ function Book(author, title, pages, read) {
     this.info = function () {
         return title + ' by ' + author + ', ' + pages + ' pages, ' + read;
     }   
+}
+
+Book.prototype.toggleReadStatus = function () {
+    if (this.read === "Complete") {
+        this.read = "Incomplete"
+    } else {
+        this.read = "Complete"
+    }
 }
 
 function addBookToLibrary(author, title, pages, read) {
@@ -82,10 +99,21 @@ function displayBooks() {
         pages.classList.add("book-pages");
         pages.textContent = myLibrary[i].pages + " Pages";
 
-        //readStatus
-        let readStatus = document.createElement("div");
-        readStatus.classList.add("readStatus");
-        readStatus.textContent = myLibrary[i].read;
+        //Read Status button
+        let statusButton = document.createElement("button");
+        statusButton.setAttribute("readStatus", myLibrary[i].read);
+        statusButton.textContent = myLibrary[i].read;
+
+        statusButton.addEventListener('click', (e) => {
+            let targetUid = e.target.parentElement.dataset.uid;
+            for (let i = 0; i < myLibrary.length; i++) {
+                if (myLibrary[i].uid === targetUid) {
+                    myLibrary[i].toggleReadStatus();
+                    container.innerHTML = '';
+                    displayBooks();
+                }
+            }
+        });
 
         //delete button
         let deleteButton = document.createElement("button");
@@ -109,7 +137,7 @@ function displayBooks() {
         card.appendChild(title);
         card.appendChild(author);
         card.appendChild(pages);
-        card.appendChild(readStatus)
+        card.appendChild(statusButton);
         card.appendChild(deleteButton);
 
         container.appendChild(card);
