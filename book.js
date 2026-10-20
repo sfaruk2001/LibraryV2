@@ -4,9 +4,9 @@ let myLibrary = [];
 let addBookButton = document.querySelector('.add-book');
 let modal = document.querySelector('.book-modal');
 let submitButton = document.querySelector('.submit-button');
-let deleteButton = document.querySelector('.delete-book');
 
 //You need to work on delete functionality 
+
 
 addBookButton.addEventListener('click', (e) => {
     modal.showModal();
@@ -63,6 +63,9 @@ function displayBooks() {
         //create card div
         let card = document.createElement("div");
         card.classList.add("card");
+        //give each card a data-attribute
+        card.setAttribute("data-uid", myLibrary[i].uid);
+        
 
         //title
         let title = document.createElement("div");
@@ -88,6 +91,20 @@ function displayBooks() {
         let deleteButton = document.createElement("button");
         deleteButton.classList.add("delete-book");
         deleteButton.textContent = "Delete";
+
+        deleteButton.addEventListener('click', (e) => {
+            let targetUid = e.target.parentElement.dataset.uid;
+            let targetIdx;
+            for (let i = 0; i < myLibrary.length; i++) {
+                if (myLibrary[i].uid === targetUid) {
+                    targetIdx = i;
+                }
+            }
+            myLibrary.splice(i, 1);
+            container.innerHTML = '';
+            displayBooks();
+
+        });
 
         card.appendChild(title);
         card.appendChild(author);
