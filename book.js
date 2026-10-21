@@ -5,8 +5,6 @@ let addBookButton = document.querySelector('.add-book');
 let modal = document.querySelector('.book-modal');
 let submitButton = document.querySelector('.submit-button');
 
-//Couldn't figure out validation 
-
 
 addBookButton.addEventListener('click', (e) => {
     modal.showModal();

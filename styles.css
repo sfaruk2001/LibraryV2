@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+
+
 :root {
     --main-color: blueviolet;
     --secondary-color: white;
@@ -10,6 +13,7 @@
 }
 
 body {
+    font-family: "Merriweather", serif;
     height: 100vh;
     display: grid;
     grid-template-rows: 1fr 6fr;
@@ -122,6 +126,7 @@ button[readstatus = 'Incomplete'] {
 .delete-book, button[readstatus] {
     width: 120px;
     height: 30px;
+    border: 1px solid black;
 }
 
 
